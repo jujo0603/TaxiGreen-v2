@@ -1,0 +1,1607 @@
+/**
+ * main.css — versión depurada y estructurada
+ * Proyecto: TaxiGreen
+ * Descripción: Hoja de estilos optimizada, sin redundancias ni cambios visuales.
+ * Autor base: BootstrapMade (Siimple Template) — Depurado por ChatGPT
+ * Fecha de depuración: Noviembre 2025
+ */
+
+
+/*--------------------------------------------------------------
+# Font & Color Variables
+# Help: https://bootstrapmade.com/color-system/
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway",  sans-serif;
+  --nav-font: "Poppins",  sans-serif;
+}
+
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root { 
+  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #462918; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #28a745; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+:root {
+  --nav-color: #ffffff;  /* The default color of the main navmenu links */
+  --nav-hover-color: #28a745; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #0a0a0a; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #3b3b3b; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #28a745; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+}
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
+.light-background {
+  --background-color: #f8f4f2;
+  --surface-color: #ffffff;
+}
+
+.dark-background {
+  --background-color: #6f6f6f;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #898989;
+  --contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+/* PHP Email Form Messages
+------------------------------*/
+.php-email-form .error-message {
+  display: none;
+  background: #df1529;
+  color: #ffffff;
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .sent-message {
+  display: none;
+  color: #ffffff;
+  background: #28a745;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .loading {
+  display: none;
+  background: var(--surface-color);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+}
+
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color);
+  animation: php-email-form-loading 1s linear infinite;
+}
+
+@keyframes php-email-form-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  --background-color: rgba(0, 0, 0, 0);
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 10px 0;
+  transition: all 0.5s;
+  z-index: 997;
+}
+
+.header .logo {
+  line-height: 1;
+}
+
+.header .logo img {
+  max-height: 40px;
+  margin-right: 8px;
+}
+
+.header .logo h1 {
+  font-size: 40px;
+  margin: 0;
+  font-weight: 300;
+  color: var(--heading-color);
+}
+
+/* Global Header on Scroll
+------------------------------*/
+.scrolled .header {
+  --background-color: rgba(111, 111, 111, 0.8); /* gris con 80% de opacidad */
+  backdrop-filter: blur(5px); /* opcional: desenfoque del fondo detrás */
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Navmenu */
+.mobile-nav-toggle {
+  color: var(--nav-color);
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  font-size: 40px;
+  line-height: 0;
+  cursor: pointer;
+  display: block !important;
+  z-index: 998;
+  transition: 0.3s;
+}
+
+.mobile-nav-toggle:hover {
+  color: var(--nav-hover-color);
+}
+
+.navmenu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -300px;
+  z-index: 997;
+  transition: 0.3s;
+  width: 300px;
+  overflow: hidden;
+}
+
+.navmenu ul {
+  display: block;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  overflow-y: auto;
+  transition: 0.3s;
+  z-index: 998;
+}
+
+.navmenu a,
+.navmenu a:focus {
+  color: var(--nav-dropdown-color);
+  padding: 10px 20px;
+  font-family: var(--nav-font);
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navmenu a i,
+.navmenu a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+}
+
+.navmenu a i:hover,
+.navmenu a:focus i:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.navmenu a:hover,
+.navmenu .active,
+.navmenu .active:focus {
+  color: var(--nav-dropdown-hover-color);
+}
+
+.navmenu .active i,
+.navmenu .active:focus i {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  transform: rotate(180deg);
+}
+
+.navmenu .dropdown ul {
+  position: static;
+  display: none;
+  z-index: 99;
+  padding: 10px 0;
+  margin: 10px 20px;
+  box-shadow: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.navmenu .dropdown>.dropdown-active {
+  display: block;
+  background-color: var(--nav-dropdown-background-color);
+  border: 1px solid color-mix(in srgb, var(--nav-dropdown-color), transparent 90%);
+}
+
+.mobile-nav-active {
+  overflow: hidden;
+}
+
+.mobile-nav-active .mobile-nav-toggle {
+  right: 310px;
+  font-size: 36px;
+}
+
+.mobile-nav-active .navmenu {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--nav-mobile-background-color);
+  transition: 0.3s;
+}
+
+/* =======================
+   FOOTER (Compacto con verde de marca)
+======================= */
+.footer {
+  background-color: #2e2e2e;
+  color: #ccc;
+  padding: 35px 0 20px;
+  font-size: 14px;
+  border-top: 3px solid #28a745; /* toque verde de marca */
+  box-shadow: 0 -2px 6px rgba(40, 167, 69, 0.15); /* leve glow verde */
+}
+
+.footer h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.footer p {
+  color: #bbb;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.social-links a {
+  display: inline-block;
+  font-size: 18px;
+  color: #aaa;
+  margin: 0 8px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+  transform: translateY(-2px);
+}
+
+.social-links .whatsapp:hover {
+  color: #25d366;
+}
+
+.social-links .facebook:hover {
+  color: #1877f2;
+}
+
+.social-links .tiktok:hover {
+  color: #ff0050;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  margin-top: 20px;
+  padding-top: 12px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+    padding: 30px 0 15px;
+  }
+  .footer-about {
+    margin-bottom: 15px;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background-color: var(--background-color);
+  transition: all 0.6s ease-out;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid var(--accent-color);
+  border-top-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+.page-title {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 160px 0 80px 0;
+  text-align: center;
+  position: relative;
+}
+
+.page-title:before {
+  content: "";
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  position: absolute;
+  inset: 0;
+}
+
+.page-title h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.page-title .breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.page-title .breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.page-title .breadcrumbs ol li+li::before {
+  content: "/";
+  display: inline-block;
+  padding-right: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 60px 0;
+  scroll-margin-top: 78px;
+  overflow: clip;
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-slides {
+  width: 100%;
+  height: 100%;
+  position: absolute; /* ocupa todo el hero */
+  top: 0;
+  left: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%; /* fuerza altura completa */
+  opacity: 0;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  transform: scale(1.05);
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-slide .container {
+  text-align: center;
+  color: var(--contrast-color);
+  z-index: 2;
+  max-width: 90%;
+}
+
+.hero-slide h2 {
+  font-size: 48px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.hero-slide p {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.hero-slide .btn-get-started {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 40px;
+  border-radius: 50px;
+  transition: 0.3s;
+  margin-top: 30px;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.9); /* delineado negro suave */
+
+}
+
+.hero-slide .btn-get-started:hover {
+  background: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+}
+
+/* Indicadores */
+.hero-indicators {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-indicators .indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--contrast-color), black 50%);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hero-indicators .indicator.active {
+  background-color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .hero-slide h2 {
+    font-size: 32px;
+  }
+  .hero-slide p {
+    font-size: 18px;
+  }
+}
+
+/* ====== HERO EFECTO DE MOVIMIENTO DIFERENCIADO + CAPA OSCURA ====== */
+
+/* Remover filtro del slide */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  /* filter: brightness(0.65); */ /* QUITADO */
+  overflow: hidden;
+}
+
+/* Overlay oscuro y filtro sobre la imagen únicamente */
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* capa oscura */
+  z-index: 1;
+  /* filtro de brillo opcional para la imagen */
+  filter: brightness(0.65); /* solo afecta el overlay y el fondo, no el texto */
+}
+
+
+/* Movimiento tipo "Ken Burns" (zoom in / zoom out alternado) */
+.hero-slide:nth-child(1) {
+  animation: zoomIn 12s ease-in-out infinite alternate;
+}
+.hero-slide:nth-child(2) {
+  animation: zoomOut 12s ease-in-out infinite alternate;
+}
+.hero-slide:nth-child(3) {
+  animation: zoomIn 12s ease-in-out infinite alternate;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Contenedor del texto: fijo, centrado y sin moverse */
+.hero-slide .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Tipografía del texto: clara y estable */
+.hero-slide h2, 
+.hero-slide p {
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.hero-slide h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.hero-slide p {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+/* Responsivo: texto más pequeño en móviles */
+@media (max-width: 768px) {
+  .hero-slide h2 {
+    font-size: 2rem;
+  }
+  .hero-slide p {
+    font-size: 1rem;
+  }
+}
+
+
+/* ===================================================== */
+/* Fade + slide al hacer scroll */
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(80px); /* antes 30px */
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-on-scroll.scrolled {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================
+   SOBRE NOSOTROS
+   ======================== */
+
+#sobre-nosotros {
+  min-height: 66.66vh; /* ocupa 2/3 de la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}   
+
+#sobre-nosotros .fade-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+#sobre-nosotros .fade-on-scroll:nth-child(2) { transition-delay: 0.3s; }
+#sobre-nosotros .fade-on-scroll:nth-child(3) { transition-delay: 0.5s; }
+
+.indicadores-section {
+  background-color: #28a745; /* verde marca */
+}
+.indicadores-section .numero {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.indicadores-section p {
+  font-weight: 600;
+  margin: 0;
+}
+.indicadores-section i {
+  color: #fff;
+}
+
+#indicadores {
+  min-height: 33.33vh; /* ocupa 1/3 de la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========================
+   NUESTROS SERVICIOS
+   ======================== */
+/* ===== SECCIÓN SERVICIOS ===== */
+.servicios-section {
+  min-height: 100vh; /* igual que el hero */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 60px 0;
+}
+
+.servicios-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.service-card img {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+
+/* Ajustes responsive */
+@media (max-width: 992px) {
+  .servicios-section {
+    padding: 40px 0;
+  }
+  .service-card img {
+    height: 160px;
+  }
+}
+
+
+
+/* ========================
+   NUESTRAS UNIDADES
+   ======================== */
+.why-us {
+  padding: 80px 0;
+}
+
+.why-us .section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.why-us .card {
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.why-us .card:hover {
+  transform: translateY(-5px);
+}
+
+.why-us .card h2 {
+  font-size: 18px;
+  margin: 15px 0 10px 0;
+}
+
+.why-us .card p {
+  font-size: 14px;
+  color: var(--heading-color);
+}
+
+.why-us .card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* ========================
+   FORMULARIO DE CONTACTO
+   ======================== */
+.contact {
+  padding: 80px 0;
+  background: #f9f9f9;
+}
+
+.contact .section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact .php-email-form input,
+.contact .php-email-form textarea {
+  border-radius: 50px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.contact .php-email-form button {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact .php-email-form button:hover {
+  background: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+}
+
+/* ========================
+   FOOTER
+   ======================== */
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  background: #222;
+  color: #fff;
+}
+
+.footer h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.footer .social-links a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 18px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  color: var(--accent-color);
+}
+
+.footer .copyright {
+  font-size: 12px;
+  margin-top: 15px;
+  color: #aaa;
+}
+
+/* ========================
+   RESPONSIVE
+   ======================== */
+@media (max-width: 768px) {
+  .about h3, .service-item h3, .why-us .card h2 {
+    font-size: 16px;
+  }
+
+  .about p, .service-item p, .why-us .card p {
+    font-size: 14px;
+  }
+
+  .contact .php-email-form button {
+    width: 100%;
+  }
+}
+
+.navmenu .nav-whatsapp {
+  display: inline-block;
+  background-color: #28a745; /* verde WhatsApp */
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: background 0.3s;
+  margin-left: 10px;   /* mueve un poco a la derecha */
+  margin-top: 8px;     /* mueve un poco hacia abajo */
+}
+
+.navmenu .nav-whatsapp:hover {
+  background-color: #28a745;
+  text-decoration: none;
+  color: #fff !important;
+}
+
+.header-contact {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+  margin-right: 60px;
+}
+
+.header-contact:hover {
+  color: #28a745;
+}
+
+.navmenu .btn-reserve {
+  color: #fff;
+  background-color: #28a745;
+  padding: 8px 20px;
+  border-radius: 50px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.navmenu .btn-reserve:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+@media (max-width: 1199px) {
+  .header-contact {
+    display: none; /* opcional: ocultar en móviles si estorba */
+  }
+}
+
+/* =============================
+   Menú móvil fijo lateral derecho
+============================= */
+.navmenu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* fuera de la pantalla por defecto */
+  width: 300px; /* ancho del panel lateral */
+  height: 100vh; /* ocupa toda la altura de la pantalla */
+  background-color: rgba(0,0,0,0.95); /* fondo semitransparente oscuro */
+  z-index: 9999;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  padding-top: 100px; /* espacio para que no tape el header */
+}
+
+/* Cuando se activa el menú móvil */
+body.mobile-nav-active .navmenu {
+  right: 0; /* se despliega completamente */
+}
+
+/* Items del menú móvil */
+.navmenu ul {
+  list-style: none;
+  padding: 0 20px;
+}
+
+.navmenu ul li {
+  margin: 20px 0;
+}
+
+.navmenu ul li a {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+}
+
+.navmenu ul li a:hover {
+  color: #28a745; /* verde WhatsApp */
+}
+
+/* Botón sandwich */
+.mobile-nav-toggle {
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+  z-index: 10000;
+}
+
+/* Ajustes generales para móviles */
+@media (min-width: 1200px) {
+  .navmenu {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding-top: 0;
+    display: flex !important;
+  }
+  .navmenu ul {
+    display: flex;
+    gap: 25px;
+  }
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+
+/* ======= Vista Escritorio ======= */
+@media (min-width: 1200px) {
+  /* Ocultar botón sandwich */
+  .mobile-nav-toggle {
+    display: none;
+  }
+
+  /* Header-right: organizar en fila */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* espacio entre WhatsApp y nav */
+  }
+
+  /* Botón WhatsApp */
+  .header-contact {
+    margin: 0;
+  }
+
+  /* Nav horizontal */
+  #navmenu ul {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    position: static;
+    height: auto;
+    width: auto;
+    background: none;
+    backdrop-filter: none;
+    padding: 0;
+  }
+
+  #navmenu ul li a {
+    padding: 0;
+    color: #fff;
+  }
+
+  #navmenu ul li a:hover,
+  #navmenu ul li a.active {
+    color: #28a745;
+  }
+}
+
+/* ======= Movil sigue igual ======= */
+@media (max-width: 1199px) {
+  /* Nada cambia, se mantiene el nav vertical */
+}
+
+@media (min-width: 1025px) {
+  .mobile-nav-toggle {
+    display: none !important;
+  }
+}
+
+/* ======== SOLO PARA ESCRITORIO ======== */
+@media (min-width: 1025px) {
+  .header-right {
+    display: flex;
+    align-items: center; /* alinea verticalmente el número y el nav */
+    gap: 1.5rem; /* separa el número del menú */
+  }
+
+  #navmenu ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* separa los ítems del nav */
+    margin: 0;
+  }
+
+  /* Botón verde Reservar Ahora */
+  .nav-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+  }
+
+  /* Asegura que no se vea el botón sandwich en escritorio */
+  .mobile-nav-toggle {
+    display: none !important;
+  }
+}
+
+/* ====== Forzar aspecto correcto del botón "Reservar Ahora" ======
+   Colocar AL FINAL de main.css para que sobreescriba reglas previas. */
+
+header .header-right .navmenu .nav-whatsapp {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+
+  /* Tamaño/espaciado (igual que móvil) */
+  padding: 10px 24px !important;    /* vertical u horizontal: ajusta si quieres más alto/ancho */
+  font-size: 16px !important;       /* tamaño de texto */
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  /* Apariencia */
+  background-color: #28a745 !important;  /* verde */
+  color: #ffffff !important;
+  text-decoration: none !important;
+  border-radius: 999px !important;       /* pill */
+  border: none !important;
+
+  /* Sombra y transición sutil */
+  box-shadow: 0 6px 18px rgba(37,211,102,0.14) !important;
+  transition: background-color .12s ease, transform .12s ease, box-shadow .12s ease !important;
+
+  /* asegurar que no se desplace verticalmente */
+  margin-top: 0 !important;
+  margin-left: 12px !important;
+  height: auto !important;
+  min-height: 44px !important;
+}
+
+/* Si el botón lleva un icono dentro */
+header .header-right .navmenu .nav-whatsapp i,
+header .header-right .navmenu .nav-whatsapp .icon {
+  margin-right: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Hover / active */
+header .header-right .navmenu .nav-whatsapp:hover,
+header .header-right .navmenu .nav-whatsapp:focus {
+  background-color: #28a745 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 10px 30px rgba(29,170,83,0.16) !important;
+}
+
+/* Mantener versión móvil igual (por si hay diferencias) */
+@media (max-width: 1024px) {
+  header .header-right .navmenu .nav-whatsapp {
+    padding: 10px 22px !important;
+    font-size: 16px !important;
+    margin-left: 8px !important;
+  }
+}
+
+/* ===== Efecto de transparencia y desenfoque en menú móvil ===== */
+body.mobile-nav-active .navmenu {
+  background: rgba(0, 0, 0, 0.5) !important; /* negro con transparencia */
+  backdrop-filter: blur(10px); /* desenfoque del fondo */
+  -webkit-backdrop-filter: blur(10px); /* compatibilidad Safari */
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* ============================================================
+   BOTONES FLOTANTES (WhatsApp + Teléfono)
+   ============================================================ */
+.floating-buttons {
+  position: fixed;
+  top: 50%; /* centra verticalmente */
+  right: 25px;
+  transform: translateY(-50%); /* ajusta al centro exacto */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.float-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos individuales */
+.float-btn.whatsapp {
+  background-color: #28a745;
+}
+
+.float-btn.whatsapp:hover {
+  background-color: #3ece5f;
+  transform: translateY(-3px);
+}
+
+.float-btn.phone {
+  background-color: #04b8ff;
+}
+
+.float-btn.phone:hover {
+  background-color: #0295d8;
+  transform: translateY(-3px);
+}
+
+/* Ajuste para móviles: bajarlos un poco */
+@media (max-width: 768px) {
+  .floating-buttons {
+    top: auto;
+    bottom: 25px;
+    right: 20px;
+    transform: none;
+    gap: 12px;
+  }
+
+  .float-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+/* Contenedor relativo para el botón WhatsApp */
+.floating-buttons .float-btn.whatsapp {
+  position: relative;
+}
+
+/* Burbuja de texto */
+.floating-buttons .float-btn.whatsapp::after {
+  content: "Comunícate con Nosotros";
+  position: absolute;
+  left: -150px; /* distancia desde el botón, ajusta según tu diseño */
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 128, 0, 0.8); /* verde suave tipo WhatsApp */
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  white-space: nowrap;
+  opacity: 0.9;
+  pointer-events: none; /* para que no interfiera con el clic */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: floatBubble 3s ease-in-out infinite;
+}
+
+/* Animación sutil de flotación */
+@keyframes floatBubble {
+  0%, 100% { transform: translateY(-50%) translateY(0); }
+  50% { transform: translateY(-50%) translateY(-5px); }
+}
+
+/* H2 y P de Servicios iguales a Nosotros */
+#servicios h2,
+#servicios p {
+  font-family: 'Poppins', sans-serif; /* la misma que Nosotros */
+  font-weight: 400;                   /* igual que Nosotros */
+  font-size: 32px;                    /* igual que Nosotros */
+  line-height: 1.3;                   /* igual que Nosotros */
+  color: #000;                        /* igual que Nosotros */
+}
+
+#servicios p {
+  font-size: 16px;                    /* igual que Nosotros */
+  color: #6c757d;                     /* gris igual que Nosotros */
+}
+
+#servicios p {
+  font-family: 'Poppins', sans-serif; /* igual que Nosotros */
+  font-weight: 400;                   /* igual que Nosotros */
+  font-size: 16px;                    /* igual que Nosotros */
+  line-height: 1.5;                   /* igual que Nosotros */
+  color: #000 !important;             /* ignora text-muted */
+  margin-bottom: 0;                   /* igual que Nosotros */
+}
+
+.reserva-section {
+  background-color: #28a745; /* mismo estilo franja CONTEO */
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.reserva-section h2 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.reserva-section p {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.reserva-section .btn {
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 50px;
+}
+
+/* ========================
+   TIPOGRAFÍA UNIDADES IGUAL A SERVICIOS/NOSOTROS
+   ======================== */
+
+/* Contenedor principal de Unidades */
+#unidades h2,
+#unidades h4,
+#unidades p {
+  font-family: 'Poppins', sans-serif !important; /* igual que Servicios/Nosotros */
+  font-weight: 400 !important;                   /* normal, igual que Nosotros */
+  line-height: 1.3 !important;
+  letter-spacing: 0 !important;
+  color: #000 !important;                        /* ignora text-muted */
+  margin-bottom: 0.5rem !important;
+}
+
+/* Ajuste de tamaño para h2 y h4 */
+#unidades h2 {
+  font-size: 32px !important; /* igual que Servicios/Nosotros */
+}
+
+#unidades h4 {
+  font-size: 21px !important; /* igual que las tarjetas de Servicios */
+  font-weight: 600 !important;
+}
+
+/* Ajuste de párrafos dentro de las tarjetas */
+#unidades .service-card p {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: #000 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ========================
+   FORMULARIO CONVENIOS
+   ======================== */
+
+/* === CONVENIOS EMPRESARIALES === */
+#formulario {
+  background-color: #f1f3f5; /* gris claro, distinto del de Unidades */
+  color: #333;
+  padding: 80px 0;
+}
+
+#formulario h2 {
+  color: #222;
+  font-weight: 500;
+  font-size: 32px;
+}
+
+#formulario p {
+  color: #222;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Tarjeta del formulario */
+#formulario form {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Campos */
+#formulario .form-control {
+  background-color: #ebffed;
+  border: 1px solid #ccc;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+#formulario .form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Botón principal */
+#formulario button {
+  background-color: #28a745;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+}
+
+#formulario button:hover {
+  background-color: #28a745;
+  transform: translateY(-2px);
+}
+
+/* ========================
+   UNIFICACIÓN SOLO EN ESCRITORIO
+   ======================== */
+
+/* Aplica solo desde escritorio (no altera móvil) */
+@media (min-width: 992px) {
+
+  /* Limita el ancho visual de todas las secciones */
+  section .container {
+    max-width: 1100px; /* puedes bajar a 1000 o subir a 1200 según gusto */
+    margin: 0 auto;
+  }
+
+  /* Uniforma padding sin alterar el móvil */
+  section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* NO toques tipografía, ni h2 ni p,
+     para que “Nosotros”, “Servicios” y “Unidades” conserven su estilo */
+}
+
+/* ========================
+   IGUALAR ESTILO DE "NOSOTROS" A "SERVICIOS" Y "UNIDADES"
+   ======================== */
+
+.about-section {
+  background-color: #f8f9fa; /* mismo tono de fondo claro */
+}
+
+.about-card {
+  background-color: #fff;
+  border-radius: 1rem; /* igual que las otras */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Títulos y párrafos igual que en servicios/unidades */
+.about-card h5 {
+  font-weight: 700; /* igual que fw-bold */
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: #212529;
+}
+
+.about-card p {
+  color: #6c757d; /* gris suave */
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* Iconos alineados al estilo actual */
+.about-card i {
+  color: #28a745;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ========================
+   AJUSTE DE TAMAÑO - NOSOTROS IGUAL A SERVICIOS Y UNIDADES
+   ======================== */
+
+.about-card {
+  background-color: #fff !important;
+  border-radius: 1rem !important; /* igual que .service-card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  padding: 1.5rem !important;
+  height: 100% !important; /* igual que en .service-card */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.about-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Igualar títulos */
+.about-card h5 {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+  color: #000 !important;
+  text-align: center;
+}
+
+/* Igualar texto */
+.about-card p {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  color: #6c757d !important;
+  margin-bottom: 0 !important;
+  text-align: center;
+}
+
+/* Igualar icono al tamaño de imagen de servicio */
+.about-card i {
+  font-size: 3rem !important;
+  color: #28a745 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Ajustar columnas igual que en servicios */
+.about-section .row > div {
+  display: flex;
+  align-items: stretch;
+}
+
