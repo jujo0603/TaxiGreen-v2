@@ -19,21 +19,19 @@
   const inView = (el, offset = 0) => el.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight) - offset;
 
   // ===============================
-  // Scroll handler optimizado
+  // Scroll handler
   // ===============================
   let numbersCounted = false;
-  let ticking = false;
-
-  function handleScroll() {
+  function onScroll() {
     const scrollY = window.scrollY;
 
     // Header scrolled
     if (header && (header.classList.contains('scroll-up-sticky') || header.classList.contains('sticky-top') || header.classList.contains('fixed-top'))) {
-      body.classList.toggle('scrolled', scrollY > 100);
+      scrollY > 100 ? body.classList.add('scrolled') : body.classList.remove('scrolled');
     }
 
     // Scroll-top button
-    if (scrollTopBtn) scrollTopBtn.classList.toggle('active', scrollY > 100);
+    if (scrollTopBtn) scrollY > 100 ? scrollTopBtn.classList.add('active') : scrollTopBtn.classList.remove('active');
 
     // Fade-on-scroll
     fadeElements.forEach(el => { if (inView(el, 100)) el.classList.add("scrolled"); });
@@ -41,42 +39,30 @@
     // Indicators numbers animation
     if (indicatorsSection && !numbersCounted && inView(indicatorsSection, 100)) {
       indicatorsSection.querySelectorAll('.numero').forEach(num => {
-        const target = +num.dataset.target;
+        const target = +num.getAttribute('data-target');
         let current = 0;
         const step = Math.ceil(target / 200);
-        const animate = () => {
+        const timer = setInterval(() => {
           current += step;
-          if (current >= target) num.innerText = target.toLocaleString();
-          else {
-            num.innerText = current.toLocaleString();
-            requestAnimationFrame(animate);
-          }
-        };
-        animate();
+          if (current >= target) { num.innerText = target.toLocaleString(); clearInterval(timer); }
+          else num.innerText = current.toLocaleString();
+        }, 20);
       });
       numbersCounted = true;
     }
 
     // Navmenu Scrollspy
-    const pos = scrollY + 200;
     navLinks.forEach(link => {
       if (!link.hash) return;
       const section = document.querySelector(link.hash);
       if (!section) return;
-      const active = pos >= section.offsetTop && pos <= section.offsetTop + section.offsetHeight;
-      link.classList.toggle('active', active);
+      const pos = scrollY + 200;
+      if (pos >= section.offsetTop && pos <= section.offsetTop + section.offsetHeight) {
+        document.querySelectorAll('.navmenu a.active').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      } else link.classList.remove('active');
     });
-
-    ticking = false;
   }
-
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(handleScroll);
-      ticking = true;
-    }
-  }
-
   document.addEventListener('scroll', onScroll);
   window.addEventListener('load', onScroll);
 
@@ -98,13 +84,13 @@
     drop.addEventListener('click', e => {
       e.preventDefault();
       drop.parentNode.classList.toggle('active');
-      drop.parentNode.nextElementSibling?.classList.toggle('dropdown-active');
+      drop.parentNode.nextElementSibling.classList.toggle('dropdown-active');
       e.stopImmediatePropagation();
     });
   });
 
   // ===============================
-  // Preloader
+  // Preloader (eliminado al DOM listo)
   // ===============================
   if (preloader) document.addEventListener('DOMContentLoaded', () => preloader.remove());
 
@@ -147,5 +133,7 @@
     setInterval(nextSlide, intervalTime);
   })();
 
+  
 })();
+
 
