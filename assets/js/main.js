@@ -132,6 +132,30 @@
     showSlide(0);
     setInterval(nextSlide, intervalTime);
   })();
+  <script>
+document.getElementById("formConvenios").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const data = new URLSearchParams(new FormData(form));
+
+  const res = await fetch("https://submit-form.com/9JBveRfvT", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: data.toString(),
+  });
+
+  if (res.ok) {
+    alert("Solicitud enviada correctamente.");
+    form.reset();
+  } else {
+    alert("Hubo un error al enviar el formulario.");
+  }
+});
+</script>
+
 
   
 })();
