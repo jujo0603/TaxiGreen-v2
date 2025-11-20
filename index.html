@@ -271,64 +271,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="row g-4">
+
       <!-- Sedán -->
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="service-card text-center p-3 shadow-sm rounded-4 bg-white h-100">
+        <div class="service-card card-click p-3 shadow-sm rounded-4 bg-white h-100">
           <div class="img-container rounded-3 mb-3">
             <img src="assets/img/auto.png" alt="Sedán" class="img-fluid">
           </div>
           <h4 class="fw-bold mb-2">Sedán</h4>
-          <p class="text-muted mb-0">Ideal para traslados personales o parejas.</p>
+          <p class="text-muted">Ideal para traslados personales o parejas.</p>
+
+          <!-- Botón oculto -->
+          <div class="reserve-box">
+            <a href="https://wa.me/51956356132?text=Hola%20quiero%20reservar%20un%20Sedán"
+               target="_blank"
+               class="btn btn-success w-100">
+               Reserva desde 40 soles
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- Camioneta -->
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="service-card text-center p-3 shadow-sm rounded-4 bg-white h-100">
+        <div class="service-card card-click p-3 shadow-sm rounded-4 bg-white h-100">
           <div class="img-container rounded-3 mb-3">
             <img src="assets/img/suv.png" alt="Camioneta" class="img-fluid">
           </div>
           <h4 class="fw-bold mb-2">Camioneta (2 o 3 filas)</h4>
-          <p class="text-muted mb-0">Para grupos pequeños o familias, cómoda y segura.</p>
+          <p class="text-muted">Para grupos pequeños o familias, cómoda y segura.</p>
+
+          <div class="reserve-box">
+            <a href="https://wa.me/51956356132?text=Hola%20quiero%20reservar%20una%20Camioneta"
+               target="_blank"
+               class="btn btn-success w-100">
+               Reserva desde 55 soles
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- Van -->
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="service-card text-center p-3 shadow-sm rounded-4 bg-white h-100">
+        <div class="service-card card-click p-3 shadow-sm rounded-4 bg-white h-100">
           <div class="img-container rounded-3 mb-3">
             <img src="assets/img/van.png" alt="Van" class="img-fluid">
           </div>
           <h4 class="fw-bold mb-2">Van</h4>
-          <p class="text-muted mb-0">Para grupos grandes o traslados corporativos.</p>
+          <p class="text-muted">Para grupos grandes o traslados corporativos.</p>
+
+          <div class="reserve-box">
+            <a href="https://wa.me/51956356132?text=Hola%20quiero%20reservar%20una%20Van"
+               target="_blank"
+               class="btn btn-success w-100">
+               Reserva desde 90 soles
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- Vip -->
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="service-card text-center p-3 shadow-sm rounded-4 bg-white h-100">
+        <div class="service-card card-click p-3 shadow-sm rounded-4 bg-white h-100">
           <div class="img-container rounded-3 mb-3">
             <img src="assets/img/lujo.png" alt="Lujo" class="img-fluid">
           </div>
-          <h4 class="fw-bold mb-2">Vip</h4>
-          <p class="text-muted mb-0">Servicio VIP con vehículos premium.</p>
+          <h4 class="fw-bold mb-2">VIP</h4>
+          <p class="text-muted">Servicio VIP con vehículos premium.</p>
+
+          <div class="reserve-box">
+            <a href="https://wa.me/51956356132?text=Hola%20quiero%20reservar%20un%20servicio%20VIP"
+               target="_blank"
+               class="btn btn-success w-100">
+               Reserva desde 120 soles
+            </a>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- Estilos -->
+
+<!-- Estilos extra -->
 <style>
   .img-container {
-    background-color: #ffffff; /* fondo blanco inicial */
+    background-color: #ffffff;
     border-radius: 0.75rem;
     padding: 10px;
     transition: background-color 0.3s ease;
   }
 
   .service-card:hover .img-container {
-    background-color: #28a745; /* fondo verde al pasar el mouse */
+    background-color: #28a745;
   }
 
   .img-container img {
@@ -336,7 +372,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   .service-card:hover .img-container img {
-    transform: scale(1.02); /* leve realce sutil */
+    transform: scale(1.02);
+  }
+
+  /* BOTÓN RESERVA ANIMADO */
+  .reserve-box {
+    margin-top: 15px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.35s ease;
+  }
+
+  .card-click.active .reserve-box {
+    max-height: 80px;
+    opacity: 1;
   }
 </style>
 

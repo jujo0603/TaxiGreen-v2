@@ -162,5 +162,29 @@
     });
   }
 
+ // ===============================
+// Mostrar solo un botón de reserva por card
+// ===============================
+const cards = document.querySelectorAll(".card-click");
+
+// Abrir el primer card por defecto
+if (cards.length > 0) {
+  cards[0].classList.add("active");
+}
+
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+
+    // Cerrar todos los demás
+    cards.forEach(other => {
+      if (other !== card) other.classList.remove("active");
+    });
+
+    // Abrir/cerrar el card clickeado
+    card.classList.toggle("active");
+  });
+});
+
+
   
 })();
