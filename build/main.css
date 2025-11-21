@@ -526,15 +526,21 @@ section,
   overflow: hidden;
 }
 
-/* Overlay oscuro y filtro sobre la imagen únicamente */
+/* ====== HERO: DEGRADADO ELEGANTE (Izquierda Oscura -> Derecha Clara) ====== */
+
 .hero-slide::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45); /* capa oscura */
   z-index: 1;
-  /* filtro de brillo opcional para la imagen */
-  filter: brightness(0.65); /* solo afecta el overlay y el fondo, no el texto */
+  
+  /* ELIMINADO: background: rgba(0, 0, 0, 0.45); */
+  /* ELIMINADO: filter: brightness(0.65); */
+
+  /* NUEVO: Degradado lateral suave */
+  /* Empieza negro fuerte (90%) a la izquierda para que el texto blanco se lea perfecto.
+     Se va volviendo transparente hacia la derecha para dejar ver la foto. */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.1) 100%);
 }
 
 
@@ -664,12 +670,10 @@ section,
    ======================== */
 /* ===== SECCIÓN SERVICIOS ===== */
 .servicios-section {
-  min-height: 100vh; /* igual que el hero */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: auto; /* Soluciona el hueco blanco */
+  display: block;   /* Flex a veces estira cosas innecesariamente en bloques grandes */
   background-color: #f8f9fa;
-  padding: 60px 0;
+  padding: 40px 0;  /* Reducimos el aire arriba y abajo */
 }
 
 .servicios-section h2 {
@@ -678,7 +682,7 @@ section,
 }
 
 .service-card img {
-  height: 180px;
+  height: 250px; /* Más alto para dar presencia en escritorio */
   object-fit: cover;
   width: 100%;
   border-radius: 12px;
@@ -1208,6 +1212,11 @@ body.mobile-nav-active .navmenu {
    ======================== */
 
 /* Contenedor principal de Unidades */
+#unidades {
+  background-color: #f8f9fa; /* Mismo gris que servicios */
+  padding-top: 0; /* Pega esta sección a la anterior */
+}
+
 #unidades h2,
 #unidades h4,
 #unidades p {
@@ -1303,11 +1312,11 @@ body.mobile-nav-active .navmenu {
 /* Aplica solo desde escritorio (no altera móvil) */
 @media (min-width: 992px) {
 
-  /* Limita el ancho visual de todas las secciones */
-  section .container {
-    max-width: 1100px; /* puedes bajar a 1000 o subir a 1200 según gusto */
-    margin: 0 auto;
-  }
+  /* Limita el ancho máximo para que no se vea eterno en PC */
+section .container {
+  max-width: 1200px; 
+  margin: 0 auto;
+}
 
   /* Uniforma padding sin alterar el móvil */
   section {
@@ -1417,3 +1426,200 @@ body.mobile-nav-active .navmenu {
   align-items: stretch;
 }
 
+/* --- RITMO VISUAL (Efecto Cebra) --- */
+
+/* 1. Servicios se queda blanco (por defecto), pero forzamos limpieza */
+#servicios {
+  background-color: #ffffff !important;
+  position: relative;
+  z-index: 1; /* Para que la sombra de las cards no se corte */
+}
+
+/* 2. Unidades en Gris Suave (Rompe el blanco de Servicios) */
+#unidades {
+  background-color: #f4f6f9 !important; /* Gris azulado muy elegante */
+  border-top: 1px solid #eaeaea; /* Línea sutil de separación */
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* 3. Nosotros Blanco (Limpio) */
+#sobre-nosotros {
+  background-color: #ffffff !important;
+}
+
+/* 4. Testimonios en Gris (Diferencia de Nosotros) */
+#testimonios {
+  background-color: #f4f6f9 !important;
+}
+
+/* =======================================================
+   ANIMACIÓN BARRIDO CORRECTA (Arriba/Abajo -> Centro)
+   ======================================================= */
+
+/* 1. CONFIGURACIÓN BASE (Invisible y con movimiento suave) */
+.fade-on-scroll {
+  opacity: 0;
+  /* Esta transición controla la velocidad de llegada */
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Por seguridad, le decimos que no altere el flujo del layout */
+  will-change: opacity, transform;
+}
+
+/* 2. POSICIONES INICIALES (Solo antes de aparecer) */
+
+/* IMPARES (Cards 1 y 3): Empiezan 100px ARRIBA */
+/* Usamos :not(.scrolled) para asegurar que esto SOLO pase al principio */
+.row .fade-on-scroll:nth-child(odd):not(.scrolled) {
+  transform: translateY(-100px); 
+}
+
+/* PARES (Cards 2 y 4): Empiezan 100px ABAJO */
+.row .fade-on-scroll:nth-child(even):not(.scrolled) {
+  transform: translateY(100px);
+}
+
+/* 3. ESTADO FINAL (Cuando ya apareció) - EL ORDEN */
+.fade-on-scroll.scrolled {
+  opacity: 1;
+  /* CRÍTICO: Esto obliga a la tarjeta a volver a su lugar original exacto */
+  transform: translateY(0) !important; 
+}
+
+/* 4. MANTENER LOS RETRASOS (Para que no entren todas juntas) */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.5s; }
+.delay-4 { transition-delay: 0.7s; }
+
+/* ========================
+   SECCIÓN TESTIMONIOS (Pulida y Centrada)
+   ======================== */
+#testimonios .section-title h2 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 32px !important;
+    line-height: 1.3 !important;
+    color: #000 !important;
+    margin-bottom: 15px !important;
+  }
+
+  #testimonios .section-title p {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: #6c757d !important; /* Gris Bootstrap Muted */
+    margin-bottom: 0 !important;
+  }
+
+  /* Ajuste extra de las imágenes si no cargó el main.css a tiempo */
+  .testimonial-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f1f3f5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+.testimonials-section {
+  background-color: #f4f6f9 !important;
+  overflow: hidden;
+  position: relative; /* Necesario para los efectos de fade */
+}
+
+/* --- EFECTO FADE LATERAL (Simulación visual) --- */
+/* Crea una "niebla" a la izquierda y derecha para centrar la vista */
+.testimonials-section::before,
+.testimonials-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%; /* Ancho del desvanecimiento */
+  z-index: 2;
+  pointer-events: none; /* Permite hacer clic a través de la niebla */
+}
+
+.testimonials-section::before {
+  left: 0;
+  background: linear-gradient(to right, #f4f6f9, transparent);
+}
+
+.testimonials-section::after {
+  right: 0;
+  background: linear-gradient(to left, #f4f6f9, transparent);
+}
+
+/* --- TARJETA CENTRAL (Solución al "estiramiento") --- */
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra más elegante */
+  
+  /* AQUÍ ESTÁ LA MAGIA DEL CENTRADO: */
+  max-width: 700px;       /* Ancho máximo fijo (evita que se estire) */
+  margin: 20px auto 40px; /* Centrado horizontal y margen abajo para los puntos */
+  
+  position: relative;
+  z-index: 3; /* Por encima del fade */
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Texto */
+.testimonial-card p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* --- FLECHAS DE NAVEGACIÓN (Estilo Normal y Sólido) --- */
+
+/* 1. Contenedor de la flecha (Aseguramos que sea visible) */
+.testimonials-section .carousel-control-prev,
+.testimonials-section .carousel-control-next {
+  width: 8%; /* Un poco más ancho para fácil click */
+  opacity: 1; /* Siempre visible, sin transparencia */
+  z-index: 5;
+}
+
+/* 2. El ícono redondo (Círculo Verde) */
+.testimonials-section .carousel-control-prev-icon,
+.testimonials-section .carousel-control-next-icon {
+  background-color: #28a745; /* Verde Taxi Green sólido */
+  border-radius: 50%;        /* Redondo perfecto */
+  width: 50px;               /* Tamaño cómodo */
+  height: 50px;
+  background-size: 50%;      /* Tamaño de la flechita blanca interna */
+  
+  /* Sombra para que destaque del fondo */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  
+  /* Transición suave para el click */
+  transition: all 0.2s ease;
+  
+  /* IMPORTANTE: Quitamos filtros raros. La flecha de Bootstrap es blanca por defecto */
+  filter: none !important; 
+  opacity: 1 !important;
+}
+
+/* 3. Efecto Hover (Al pasar el mouse) */
+.testimonials-section .carousel-control-prev-icon:hover,
+.testimonials-section .carousel-control-next-icon:hover {
+  background-color: #218838; /* Verde un poco más oscuro */
+  transform: scale(1.1);     /* Crece un poquito */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* 4. Efecto Active (Al hacer CLIC - "Salto") */
+/* Detectamos cuando el usuario presiona el botón contenedor */
+.testimonials-section .carousel-control-prev:active .carousel-control-prev-icon,
+.testimonials-section .carousel-control-next:active .carousel-control-next-icon {
+  transform: scale(0.90);    /* Se encoge rápido (efecto rebote) */
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2); /* La sombra baja */
+}

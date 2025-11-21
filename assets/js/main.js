@@ -185,6 +185,16 @@ cards.forEach(card => {
   });
 });
 
-
+// ===============================
+  // Init Carousel Testimonios
+  // ===============================
+  const carouselTestimonios = document.querySelector('#carouselTestimonios');
+  if (carouselTestimonios) {
+    new bootstrap.Carousel(carouselTestimonios, {
+      interval: 4000, // Cambia cada 4 segundos
+      touch: true,    // Permite deslizar con el dedo en móviles
+      pause: 'hover'  // Se pausa si pasas el mouse
+    });
+  }
   
 })();
