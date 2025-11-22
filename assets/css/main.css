@@ -787,10 +787,12 @@ section,
    ======================== */
 /* ===== SECCIÓN SERVICIOS ===== */
 .servicios-section {
-  min-height: auto; /* Soluciona el hueco blanco */
-  display: block;   /* Flex a veces estira cosas innecesariamente en bloques grandes */
+  min-height: 100vh; /* igual que el hero */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #f8f9fa;
-  padding: 40px 0;  /* Reducimos el aire arriba y abajo */
+  padding: 60px 0;
 }
 
 .servicios-section h2 {
@@ -799,7 +801,7 @@ section,
 }
 
 .service-card img {
-  height: 250px; /* Más alto para dar presencia en escritorio */
+  height: 180px;
   object-fit: cover;
   width: 100%;
   border-radius: 12px;
@@ -1491,7 +1493,7 @@ body.mobile-nav-active .navmenu {
 
   /* Limita el ancho visual de todas las secciones */
   section .container {
-    max-width: 1200px; /* puedes bajar a 1000 o subir a 1200 según gusto */
+    max-width: 1100px; /* puedes bajar a 1000 o subir a 1200 según gusto */
     margin: 0 auto;
   }
 
@@ -1601,59 +1603,5 @@ body.mobile-nav-active .navmenu {
 .about-section .row > div {
   display: flex;
   align-items: stretch;
-}
-
-/* ========================
-   SECCIÓN TESTIMONIOS
-   ======================== */
-.testimonials-section {
-  background-color: #f8f9fa; /* Mismo fondo gris claro que Nosotros/Servicios */
-  overflow: hidden;
-}
-
-/* Estilo de la tarjeta del testimonio */
-.testimonial-card {
-  background: #ffffff;
-  border-radius: 1rem; /* Coherencia con rounded-4 de Servicios */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra suave moderna */
-  max-width: 750px; /* Ancho contenido */
-  margin: 10px auto; /* Margen para respetar la sombra */
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-3px); /* Efecto hover sutil igual que tus cards */
-}
-
-/* Texto del testimonio */
-.testimonial-card p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-/* Ajuste de indicadores (puntos) */
-.testimonials-section .carousel-indicators {
-  bottom: -10px; 
-}
-
-.testimonials-section .carousel-indicators button {
-  background-color: #28a745;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin: 0 5px;
-}
-
-/* Flechas de control ajustadas */
-.testimonials-section .carousel-control-prev,
-.testimonials-section .carousel-control-next {
-  width: 5%;
-}
-
-.testimonials-section .carousel-control-prev-icon,
-.testimonials-section .carousel-control-next-icon {
-  background-size: 50%; 
 }
 
