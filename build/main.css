@@ -1701,3 +1701,15 @@ section .container {
   .service-card img { height: 250px; object-fit: cover; }
   #unidades { background-color: #f8f9fa; padding-top: 0; }
 }
+
+/* ==========================================
+   OPTIMIZACIÓN LCP (Mobile)
+   Obliga al primer slide a verse INMEDIATAMENTE
+   sin esperar a que cargue el JavaScript.
+   ========================================== */
+.hero-slide:first-child {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  z-index: 2;
+  display: flex !important; /* Asegura que ocupe su espacio */
+}
