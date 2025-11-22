@@ -13,8 +13,8 @@
   <meta name="description" content="TaxiGreen: 25 años ofreciendo viajes seguros en Lima. Flota moderna, conductores certificados y servicio 24/7.">
   <meta name="keywords" content="TaxiGreen, taxi seguro Lima, taxi confiable Lima, Taxi Directo, Taxi Satelital, Taxi 365, transporte privado Lima, servicio 24/7 taxi">
 
-  <link rel="preload" as="image" href="assets/img/slide1-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/img/slide1.webp" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/slide1-mobile.webp" media="(max-width: 768px)">
+  <link rel="preload" as="image" href="assets/img/slide1.webp" media="(min-width: 769px)">
   <link rel="preload" as="image" href="assets/img/logotg.webp">
 
   <meta property="og:type" content="website">
@@ -78,7 +78,14 @@
 
     <section class="hero">
       <div class="hero-slides">
-        <div class="hero-slide active" style="background-image: url('assets/img/slide1.webp');">
+        
+        <div class="hero-slide active">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/slide1-mobile.webp">
+            <source media="(min-width: 769px)" srcset="assets/img/slide1.webp">
+            <img src="assets/img/slide1.webp" alt="Taxi al Aeropuerto" class="hero-bg-img" fetchpriority="high">
+          </picture>
+
           <div class="container">
             <h2>TAXI GREEN - TRASLADOS AL AEROPUERTO</h2>
             <p>Servicio confiable y puntual al Aeropuerto Jorge Chávez. Reserva tu taxi con conductores profesionales 24/7.</p>
@@ -86,7 +93,9 @@
                class="btn-get-started" target="_blank">Reserva tu taxi ahora</a>
           </div>
         </div>
-        <div class="hero-slide" style="background-image: url('assets/img/slide2.webp');">
+
+        <div class="hero-slide">
+          <img src="assets/img/slide2.webp" alt="Traslados Grupales" class="hero-bg-img" loading="lazy">
           <div class="container">
             <h2>TRASLADOS GRUPALES EN VANS Y CAMIONETAS</h2>
             <p>Servicio cómodo y seguro para familias, empresas y turismo dentro y fuera de Lima.</p>
@@ -94,7 +103,9 @@
                class="btn-get-started" target="_blank">Reserva tu taxi ahora</a>
           </div>
         </div>
-        <div class="hero-slide" style="background-image: url('assets/img/slide3.webp');">
+
+        <div class="hero-slide">
+          <img src="assets/img/slide3.webp" alt="Transporte Corporativo" class="hero-bg-img" loading="lazy">
           <div class="container">
             <h2>TAXI GREEN - TRANSPORTE CORPORATIVO</h2>
             <p>Convenios empresariales con atención prioritaria y facturación mensual.</p>
@@ -102,7 +113,9 @@
                class="btn-get-started" target="_blank">Solicitar información</a>
           </div>
         </div>
+
       </div>
+
       <div class="hero-indicators">
         <span class="indicator active" data-slide="0"></span>
         <span class="indicator" data-slide="1"></span>
