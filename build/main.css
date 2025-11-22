@@ -1623,3 +1623,81 @@ section .container {
   transform: scale(0.90);    /* Se encoge rápido (efecto rebote) */
   box-shadow: 0 2px 3px rgba(0,0,0,0.2); /* La sombra baja */
 }
+
+/* ==========================================
+   MEJORAS FINALES: TAXI GREEN
+   ========================================== */
+
+/* 1. Hero: Degradado suave (negro a transparente) */
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* 2. Animación Cascada con Movimiento Alternado */
+.fade-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* Inicio: Impares arriba, Pares abajo */
+.row .fade-on-scroll:nth-child(odd):not(.scrolled) { transform: translateY(-100px); }
+.row .fade-on-scroll:nth-child(even):not(.scrolled) { transform: translateY(100px); }
+
+/* Final: Todos a su sitio */
+.fade-on-scroll.scrolled {
+  opacity: 1;
+  transform: translateY(0) !important;
+}
+
+/* Retrasos manuales */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.5s; }
+.delay-4 { transition-delay: 0.7s; }
+
+/* 3. Testimonios: Estilo Centrado + Fade Lateral */
+.testimonials-section {
+  background-color: #f4f6f9 !important;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fade Lateral */
+.testimonials-section::before, .testimonials-section::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 15%; z-index: 2; pointer-events: none !important;
+}
+.testimonials-section::before { left: 0; background: linear-gradient(to right, #f4f6f9, transparent); }
+.testimonials-section::after { right: 0; background: linear-gradient(to left, #f4f6f9, transparent); }
+
+/* Tarjeta Centrada */
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  max-width: 700px;
+  margin: 20px auto 40px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Flechas Verdes Sólidas */
+.testimonials-section .carousel-control-prev-icon,
+.testimonials-section .carousel-control-next-icon {
+  background-color: #28a745;
+  border-radius: 50%;
+  width: 50px; height: 50px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  opacity: 1 !important;
+}
+
+/* 4. Ajustes de Escritorio (Evitar huecos blancos) */
+@media (min-width: 992px) {
+  .servicios-section { min-height: auto !important; padding: 40px 0; }
+  .service-card img { height: 250px; object-fit: cover; }
+  #unidades { background-color: #f8f9fa; padding-top: 0; }
+}
