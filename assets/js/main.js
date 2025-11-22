@@ -196,5 +196,7 @@ cards.forEach(card => {
       pause: 'hover'  // Se pausa si pasas el mouse
     });
   }
+
+  
   
 })();

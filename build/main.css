@@ -408,7 +408,7 @@ section,
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -438,11 +438,14 @@ section,
   opacity: 0;
   transition: opacity 1.2s ease, transform 1.2s ease;
   transform: scale(1.05);
+  pointer-events: none;
 }
 
 .hero-slide.active {
   opacity: 1;
   transform: scale(1);
+  pointer-events: auto;
+   z-index: 2;
 }
 
 .hero-slide .container {
@@ -486,10 +489,11 @@ section,
 .hero-indicators {
   position: absolute;
   bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  justify-content: center;
-  width: 100%;
+  z-index: 10;
 }
 
 .hero-indicators .indicator {
@@ -1563,7 +1567,7 @@ section .container {
   
   position: relative;
   z-index: 3; /* Por encima del fade */
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .testimonial-card:hover {
@@ -1715,7 +1719,7 @@ section .container {
   height: 100%;
   object-fit: cover; /* Cubre todo el espacio sin deformarse */
   z-index: 0;        /* Se va al fondo */
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 /* Aseguramos que el texto quede encima de la imagen */
@@ -1736,3 +1740,62 @@ section .container {
               rgba(0, 0, 0, 0.1) 40%,   /* Antes 0.2 */
               transparent 100%);
 }
+
+/* ==========================================
+   ANIMACIONES BOTONES HERO (CORRECCIÓN FINAL DE LAYOUT E INTERACCIÓN)
+   ========================================== */
+
+/* Definición Base y Estática */
+.hero-slide .hero-cta-btn {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-weight: 500;
+  padding: 12px 35px;
+  border-radius: 50px;
+  transition: all 0.4s ease-in-out;
+  text-decoration: none;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 50;
+  
+  /* FIX LAYOUT: Separación del subtítulo */
+  margin-top: 20px; 
+  display: inline-flex; 
+  
+  /* FIX INTERACCIÓN: Fuerza la prioridad sobre el contenedor inactivo */
+  pointer-events: auto !important; 
+  z-index: 1000; /* Aseguramos que el botón no sea invisible */
+}
+
+/* El texto que está justo encima del botón también necesita z-index */
+.hero-slide .container p {
+    position: relative;
+    z-index: 20; 
+}
+
+
+/* Efecto al pasar el mouse */
+.hero-slide .hero-cta-btn:hover {
+  background: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+  transform: translateY(-3px) !important; 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto al hacer clic */
+.hero-slide .hero-cta-btn:active {
+  transform: translateY(1px) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo y Animación de la flecha */
+.hero-slide .hero-cta-btn i {
+  margin-left: 10px;
+  transition: transform 0.4s ease-in-out;
+  font-size: 1.1em;
+}
+
+.hero-slide .hero-cta-btn:hover i {
+  transform: translateX(5px) !important;
+}
+
