@@ -1725,16 +1725,14 @@ section .container {
 }
 
 /* El degradado oscuro para que se lea el texto */
-..hero-slide::after {
+.hero-slide::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1; 
-  
-  /* CAMBIO: De 0.85 (muy oscuro) bajamos a 0.65 (legible pero suave) */
-  /* Y el final es totalmente 'transparent' para que la foto se vea limpia */
+  z-index: 1;
+  /* CAMBIO: 0.5 (50%) es mucho más suave y deja ver más la foto */
   background: linear-gradient(to right, 
-              rgba(0, 0, 0, 0.65) 0%,   /* Izquierda: Oscuro justo para leer */
-              rgba(0, 0, 0, 0.2) 40%,   /* Medio: Se aclara rápido */
-              transparent 100%);        /* Derecha: Foto 100% original */
+              rgba(0, 0, 0, 0.5) 0%,    /* Antes 0.65 */
+              rgba(0, 0, 0, 0.1) 40%,   /* Antes 0.2 */
+              transparent 100%);
 }

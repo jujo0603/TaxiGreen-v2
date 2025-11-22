@@ -80,11 +80,16 @@
       <div class="hero-slides">
         
         <div class="hero-slide active">
-          <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/slide1-mobile.webp">
-            <source media="(min-width: 769px)" srcset="assets/img/slide1.webp">
-            <img src="assets/img/slide1.webp" alt="Taxi al Aeropuerto" class="hero-bg-img" fetchpriority="high">
-          </picture>
+  <picture>
+    <source media="(max-width: 768px)" srcset="assets/img/slide1-mobile.webp">
+    <source media="(min-width: 769px)" srcset="assets/img/slide1.webp">
+    <img src="assets/img/slide1.webp" 
+         alt="Taxi al Aeropuerto" 
+         class="hero-bg-img" 
+         fetchpriority="high"
+         width="1920" 
+         height="1080">
+  </picture>
 
           <div class="container">
             <h2>TAXI GREEN - TRASLADOS AL AEROPUERTO</h2>
@@ -511,8 +516,7 @@
 
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Volver arriba"><i class="bi bi-arrow-up-short"></i></a>
 
-    <div id="preloader"></div>
-
+    
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
