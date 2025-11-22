@@ -1703,13 +1703,24 @@ section .container {
 }
 
 /* ==========================================
-   OPTIMIZACIÓN LCP (Mobile)
-   Obliga al primer slide a verse INMEDIATAMENTE
-   sin esperar a que cargue el JavaScript.
+   OPTIMIZACIÓN LCP MÓVIL (Corregido)
+   Solo cambiamos la imagen de fondo, 
+   NO bloqueamos la opacidad ni la animación.
    ========================================== */
-.hero-slide:first-child {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-  z-index: 2;
-  display: flex !important; /* Asegura que ocupe su espacio */
+
+@media (max-width: 768px) {
+  
+  /* Solo cambiamos la FOTO del primer slide */
+  .hero-slide:first-child {
+    /* Forzamos la imagen ligera */
+    background-image: url('../assets/img/slide1-mobile.webp') !important;
+    
+    /* Aseguramos que se vea bien */
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+  }
+  
+  /* IMPORTANTE: Hemos eliminado 'opacity' y 'z-index' 
+     para dejar que el JavaScript mueva el carrusel libremente */
 }
